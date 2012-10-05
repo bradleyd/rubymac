@@ -8,4 +8,4 @@ extension_name = 'rubymac'
 dir_config(extension_name)
 
 # Do the work
-create_makefile("#{extension_name}/)#{extension_name}")
+create_makefile("#{extension_name}/#{extension_name}")

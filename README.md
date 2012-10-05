@@ -1,6 +1,6 @@
 # Rubymac
 
-TODO: Write a gem description
+Returns mac address for a Ethernet device on nix system
 
 ## Installation
 
@@ -17,9 +17,13 @@ Or install it yourself as:
     $ gem install rubymac
 
 ## Usage
+* This is a simple ruby library that will return a mac address from the machine it is running on.
+* This is no way feature complete and fully tested on many systems.
 
-TODO: Write usage instructions here
-
+To get your mac address:
+  mac_addr = RubyMac.new
+  mac_addr.address("eth0")
+  
 ## Contributing
 
 1. Fork it
