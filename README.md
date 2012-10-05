@@ -21,10 +21,13 @@ Or install it yourself as:
 * This is no way feature complete and fully tested on many systems.
 
 To get your mac address:
-  mac_addr = RubyMac.new
-  mac_addr.address("eth0")
-  
+  $ mac_addr = RubyMac.new
+  $ mac_addr.address("eth0")
+  $ "d48564095de2"
+
 ## Contributing
+
+* Please make any changes you like and send me a request.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
