@@ -16,7 +16,6 @@
  * =====================================================================================
  */
 
-//TODO: mac address pairs need colons :
 
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -55,7 +54,7 @@ static VALUE method_address(VALUE self, VALUE iface){
     exit(1);
   }
   
-  /* coutner for addres */
+  /* coutner for address */
   int i;
 
   struct ifreq s;
@@ -71,9 +70,18 @@ static VALUE method_address(VALUE self, VALUE iface){
   strcpy(s.ifr_name, ethernet);
   if (fd >= 0 && ret && 0 == ioctl(fd, SIOCGIFHWADDR, &s))
   {
-    for (i = 0; i < 6; ++i)
-      /* Copy mac address to memory one pair at a time */
-      snprintf(ret+i*2,MAC_STRING_LENGTH-i*2,"%02x",(unsigned char) s.ifr_addr.sa_data[i]);
+    //TODO: need a better way to display this
+    printf ( "%02x:%02x:%02x:%02x:%02x:%02x\n", 
+        (unsigned char) s.ifr_addr.sa_data[0],
+        (unsigned char) s.ifr_addr.sa_data[1], 
+        (unsigned char) s.ifr_addr.sa_data[2],
+        (unsigned char) s.ifr_addr.sa_data[3], 
+        (unsigned char) s.ifr_addr.sa_data[4],
+        (unsigned char) s.ifr_addr.sa_data[5] );
+
+    //    for (i = 0; i < MAC_STRING_LENGTH/2; ++i)
+    //      /* Copy mac address to memory one pair at a time */
+    //      snprintf(ret+i*2,MAC_STRING_LENGTH-i*2,"%02x%s",(unsigned char) s.ifr_addr.sa_data[i], ":");
   }
   else
   {
@@ -83,5 +91,5 @@ static VALUE method_address(VALUE self, VALUE iface){
   }
 
   /* Return mac address */
-  return rb_str_new2(ret);
+  return Qnil; //rb_str_new2(ret);
 }
